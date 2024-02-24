@@ -1,0 +1,43 @@
+.header__site-logo {
+  mix-blend-mode: multiply;
+
+  width: 100px;
+}
+
+.main__products-wrapper > div {
+  height: 450px;
+}
+
+.main__products-wrapper > div {
+  height: 530px;
+}
+
+.main__products-wrapper > div h5 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.main__products-wrapper > div p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  margin-top: 2rem;
+}
+
+.main__products-wrapper img {
+  min-height: 320px;
+  max-height: 320px;
+}
+
+.main__products-wrapper > div > div {
+  height: 100%;
+}
+
+.product-btn {
+  bottom: 1rem;
+  left: 1rem;
+}
