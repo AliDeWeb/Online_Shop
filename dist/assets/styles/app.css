@@ -41,3 +41,18 @@
   bottom: 1rem;
   left: 1rem;
 }
+
+.pagination-btn {
+  width: 2rem;
+  height: 2rem;
+
+  transition: all ease-in 150ms 20ms;
+
+  cursor: pointer;
+}
+.pagination-btn.active {
+  background: red !important;
+}
+.pagination-btn:hover {
+  font-weight: bold;
+}
