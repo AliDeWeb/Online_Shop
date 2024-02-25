@@ -11,11 +11,15 @@ A fully responsive landing page showcasing product data with pagination, built w
 - Styled with Bootstrap for a modern look
 - CSS fine-tuned for pixel-perfect presentation
 
-## Getting Started 
+## Getting Started
 
 1. Clone the repo: git clone https://github.com/AliDeWeb/Online_Shop.git
 2. Install dependencies: npm install
-4. Open **localhost** in your browser
+3. Open **localhost** in your browser
+
+## Demo Link:
+
+See Demo By Clicking [Here](https://alideweb.github.io/Online_Shop/dist/).
 
 ## Contributing
 
