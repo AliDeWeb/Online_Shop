@@ -4,6 +4,7 @@ const paginationWrapperSelector = document.querySelector(`.pagination-wrapper`);
 const productsFragment = document.createDocumentFragment();
 const paginationFragment = document.createDocumentFragment();
 let datas;
+const productsCart = [];
 window.addEventListener(`load`, async () => {
     const data = await fetch(`https://65da4c6cbcc50200fcdcd8ca.mockapi.io/products`);
     const dataResult = await data.json();
@@ -12,6 +13,10 @@ window.addEventListener(`load`, async () => {
     paginationFeature(productsWrapperSelector, paginationWrapperSelector, 6, 1, datas);
     document.querySelector(`.pagination-btn`).classList.add(`active`);
 });
+const addProductsToCart = (productObject) => {
+    productsCart.push(productObject);
+    localStorage.setItem(`products`, JSON.stringify(productsCart));
+};
 const paginationFeature = (itemsWrapper, paginationWrapper, itemsNum, currentPage, itemsArray) => {
     itemsWrapper.innerHTML = "";
     if (!paginationWrapper.innerHTML) {
@@ -43,12 +48,14 @@ const paginationFeature = (itemsWrapper, paginationWrapper, itemsNum, currentPag
     itemsArray
         .slice(firstIndex, lastIndex)
         .forEach((el) => {
-        let newProduc = document.createElement(`div`);
-        newProduc.classList.add(`col-lg-4`);
-        newProduc.classList.add(`col-md-6`);
-        newProduc.classList.add(`col-12`);
-        newProduc.innerHTML = `
-        <div class="position-relative card">
+        let newProduct = document.createElement(`div`);
+        newProduct.classList.add(`col-lg-4`);
+        newProduct.classList.add(`col-md-6`);
+        newProduct.classList.add(`col-12`);
+        let newProductItem = document.createElement(`div`);
+        newProductItem.classList.add(`position-relative`);
+        newProductItem.classList.add(`card`);
+        newProductItem.innerHTML = `
           <img
             src=${el.img}
             class="card-img-top"
@@ -60,11 +67,23 @@ const paginationFeature = (itemsWrapper, paginationWrapper, itemsNum, currentPag
             <p class="card-text">
               ${el.dec}
             </p>
-            <button class="product-btn btn btn-primary position-absolute">Add</button>
+            <span class="card-text">
+              $${el.price}
+            </span>
           </div>
-        </div>
-    `;
-        productsFragment.append(newProduc);
+        `;
+        let addBtn = document.createElement(`button`);
+        addBtn.innerHTML = `Add`;
+        addBtn.classList.add(`product-btn`);
+        addBtn.classList.add(`btn`);
+        addBtn.classList.add(`btn-primary`);
+        addBtn.classList.add(`position-absolute`);
+        addBtn.addEventListener(`click`, () => {
+            addProductsToCart(el);
+        });
+        newProductItem.insertAdjacentElement(`beforeend`, addBtn);
+        newProduct.append(newProductItem);
+        productsFragment.append(newProduct);
     });
     itemsWrapper.append(productsFragment);
 };
