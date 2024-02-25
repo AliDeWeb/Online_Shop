@@ -45,7 +45,7 @@ const deleteCartProducts = (productObject) => {
 };
 const totalPriceCal = () => {
     if (document.querySelectorAll(`.price-tag`).length === 0) {
-        totalPriceSelector.innerHTML = `0`;
+        totalPriceSelector.innerHTML = `Nothing To Show...`;
         return false;
     }
     let totalPrice = 0;
