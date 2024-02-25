@@ -3,3 +3,11 @@
 
   width: 100px;
 }
+
+.products-info > p {
+  width: 400px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
