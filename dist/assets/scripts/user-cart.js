@@ -1,8 +1,10 @@
 "use strict";
 const cartProductsWrappersSelector = document.querySelector(`.products-wrapper`);
 let productItemsFragment = document.createDocumentFragment();
+const totalPriceSelector = document.querySelector(`.total-price`);
 window.addEventListener(`load`, () => {
     showProducts(cartProductsWrappersSelector);
+    totalPriceCal();
 });
 const showProducts = (wrapperTag) => {
     let products = JSON.parse(localStorage.getItem(`products`));
@@ -24,7 +26,7 @@ const showProducts = (wrapperTag) => {
         <td class="products-info">
           <p>${el.dec}</p>
         </td>
-        <td>${el.price}</td>
+        <td class="price-tag">${el.price}</td>
       `;
         item.insertAdjacentElement(`beforeend`, buttonTd);
         productItemsFragment.append(item);
@@ -39,4 +41,16 @@ const deleteCartProducts = (productObject) => {
     products.splice(indexOfItem, 1);
     localStorage.setItem(`products`, JSON.stringify(products));
     showProducts(cartProductsWrappersSelector);
+    totalPriceCal();
+};
+const totalPriceCal = () => {
+    if (document.querySelectorAll(`.price-tag`).length === 0) {
+        totalPriceSelector.innerHTML = `0`;
+        return false;
+    }
+    let totalPrice = 0;
+    document.querySelectorAll(`.price-tag`).forEach((el) => {
+        totalPrice += Number(el.innerHTML);
+        totalPriceSelector.innerHTML = `$${totalPrice}`;
+    });
 };

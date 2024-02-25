@@ -2,9 +2,12 @@ const cartProductsWrappersSelector: HTMLTableElement =
   document.querySelector(`.products-wrapper`)!;
 
 let productItemsFragment = document.createDocumentFragment();
+const totalPriceSelector = document.querySelector(`.total-price`)!;
 
 window.addEventListener(`load`, () => {
   showProducts(cartProductsWrappersSelector);
+
+  totalPriceCal();
 });
 
 const showProducts = (wrapperTag: HTMLTableElement) => {
@@ -44,7 +47,7 @@ const showProducts = (wrapperTag: HTMLTableElement) => {
         <td class="products-info">
           <p>${el.dec}</p>
         </td>
-        <td>${el.price}</td>
+        <td class="price-tag">${el.price}</td>
       `;
 
       item.insertAdjacentElement(`beforeend`, buttonTd);
@@ -82,4 +85,20 @@ const deleteCartProducts = (productObject: {
   localStorage.setItem(`products`, JSON.stringify(products));
 
   showProducts(cartProductsWrappersSelector);
+  totalPriceCal();
+};
+
+const totalPriceCal = () => {
+  if (document.querySelectorAll(`.price-tag`).length === 0) {
+    totalPriceSelector.innerHTML = `0`;
+    return false;
+  }
+
+  let totalPrice: number = 0;
+
+  document.querySelectorAll(`.price-tag`).forEach((el) => {
+    totalPrice += Number(el.innerHTML);
+
+    totalPriceSelector.innerHTML = `$${totalPrice}`;
+  });
 };
