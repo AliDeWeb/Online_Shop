@@ -11,3 +11,15 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@media screen and (max-width: 992px) {
+  .products-info > p {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dec {
+    display: none;
+  }
+}

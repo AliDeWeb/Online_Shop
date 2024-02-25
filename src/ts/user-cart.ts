@@ -44,7 +44,7 @@ const showProducts = (wrapperTag: HTMLTableElement) => {
       item.innerHTML = `
         <th scope="row">${index + 1}</th>
         <td>${el.title}</td>
-        <td class="products-info">
+        <td class="dec products-info">
           <p>${el.dec}</p>
         </td>
         <td class="price-tag">${el.price}</td>
